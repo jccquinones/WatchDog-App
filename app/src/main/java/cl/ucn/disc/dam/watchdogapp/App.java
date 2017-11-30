@@ -6,12 +6,15 @@ import com.raizlabs.android.dbflow.config.DatabaseConfig;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
+import org.apache.commons.lang3.time.StopWatch;
+
 import cl.ucn.disc.dam.watchdogapp.dao.AppDatabase;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author JOHN
  */
-
+@Slf4j
 public final class App extends Application {
 
     /**
@@ -22,13 +25,15 @@ public final class App extends Application {
         super.onCreate();
 
         // Timer
-        //final StopWatch stopWatch = StopWatch.createStarted();
+        final StopWatch stopWatch = StopWatch.createStarted();
 
         // DBFLow
         {
             // Initialize DBFLow
             FlowManager.init(FlowConfig.builder(this)
-                    .addDatabaseConfig(DatabaseConfig.builder(AppDatabase.class).databaseName("articlestore").build())
+                    .addDatabaseConfig(DatabaseConfig.builder(AppDatabase.class)
+                        .databaseName("controlvehicularstore")
+                        .build())
                     // .openDatabasesOnInit(true)
                     .build()
             );
@@ -36,7 +41,7 @@ public final class App extends Application {
 
 
         // Timming
-        //log.debug("Initialization in: {}", stopWatch);
+        log.debug("Initialization in: {}", stopWatch);
 
     }
 

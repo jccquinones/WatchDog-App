@@ -65,21 +65,35 @@ android {
     }
 }
 
+// File output name
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        outputFileName = "dnews-${variant.versionCode}-${variant.name}.apk"
+    }
+}
+
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Simple Logging Facade 4 Java
+    implementation 'org.slf4j:slf4j-api:1.7.25'
 
     implementation 'com.android.support:appcompat-v7:26.1.0'
 
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
 
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     testAnnotationProcessor 'org.projectlombok:lombok:1.16.18'
     testImplementation 'org.projectlombok:lombok:1.16.18'
+
+    testImplementation 'org.assertj:assertj-core:3.8.0'
+
+    // Commons Lang3
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
 
     // Lombok Android
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
