@@ -38,4 +38,10 @@ dependencies {
     // Lombok Android
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
+
+    // DBFLow
+    annotationProcessor 'com.github.Raizlabs.DBFlow:dbflow-processor:4.1.2'
+    implementation 'com.github.Raizlabs.DBFlow:dbflow-core:4.1.2'
+    implementation 'com.github.Raizlabs.DBFlow:dbflow:4.1.2'
+
 }

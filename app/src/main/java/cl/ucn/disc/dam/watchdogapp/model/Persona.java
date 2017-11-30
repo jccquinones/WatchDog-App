@@ -1,19 +1,27 @@
 package cl.ucn.disc.dam.watchdogapp.model;
 
+import lombok.Builder;
+import lombok.Getter;
+
 /**
- * Created by JOHN on 30-11-2017.
+ * @author JOHN
  */
+@Builder
+public final class Persona {
 
-public class Persona {
-
+    @Getter
     private int rut;
 
+    @Getter
     private String nombre;
 
+    @Getter
     private String correoElectronico;
 
+    @Getter
     private int telefono;
 
+    @Getter
     private int numeroAnexo;
 
 }
