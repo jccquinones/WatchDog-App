@@ -1,30 +1,46 @@
 package cl.ucn.disc.dam.watchdogapp.model;
 
+import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
+import com.raizlabs.android.dbflow.annotation.Table;
+
+import cl.ucn.disc.dam.watchdogapp.dao.AppDatabase;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * @author JOHN
  */
 @Builder
+@Table(database = AppDatabase.class)
+@AllArgsConstructor
+@NoArgsConstructor
 public final class Vehiculo {
 
+    @PrimaryKey
     @Getter
-    private String patente;
+    String patente;
 
     @Getter
-    private String marca;
+    @Column
+    String marca;
 
     @Getter
-    private String color;
+    @Column
+    String color;
 
     @Getter
-    private String modelo;
+    @Column
+    String modelo;
 
     @Getter
-    private int anio;
+    @Column
+    int anio;
 
     @Getter
-    private String descripcion;
+    @Column
+    String descripcion;
 
 }

@@ -1,27 +1,42 @@
 package cl.ucn.disc.dam.watchdogapp.model;
 
+import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
+import com.raizlabs.android.dbflow.annotation.Table;
+
+import cl.ucn.disc.dam.watchdogapp.dao.AppDatabase;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * @author JOHN
  */
 @Builder
+@Table(database = AppDatabase.class)
+@AllArgsConstructor
+@NoArgsConstructor
 public final class Persona {
 
+    @PrimaryKey
     @Getter
-    private int rut;
+    int rut;
 
     @Getter
-    private String nombre;
+    @Column
+    String nombre;
 
     @Getter
-    private String correoElectronico;
+    @Column
+    String correoElectronico;
 
     @Getter
-    private int telefono;
+    @Column
+    int telefono;
 
     @Getter
-    private int numeroAnexo;
+    @Column
+    int numeroAnexo;
 
 }
