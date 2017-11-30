@@ -5,4 +5,16 @@ package cl.ucn.disc.dam.watchdogapp.model;
  */
 
 public class Vehiculo {
+
+    private String patente;
+
+    private String marca;
+
+    private String color;
+
+    private String modelo;
+
+    private int anio;
+
+    private String descripcion;
 }
