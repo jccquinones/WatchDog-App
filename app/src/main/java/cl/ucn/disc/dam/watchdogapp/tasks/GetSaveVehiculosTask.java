@@ -76,13 +76,6 @@ public final class GetSaveVehiculosTask extends AsyncTask<Void, Void, Integer> {
 
             return saved;
 
-            /*
-            FastStoreModelTransaction<Article> fastStoreModelTransaction = FastStoreModelTransaction.saveBuilder(FlowManager.getModelAdapter(Article.class))
-                    .addAll(articles).build();
-
-            fastStoreModelTransaction.execute(FlowManager.getWritableDatabase(AppDatabase.class));
-           */
-
         }
 
         return null;
