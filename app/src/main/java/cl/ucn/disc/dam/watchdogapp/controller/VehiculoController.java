@@ -11,6 +11,5 @@ import lombok.Builder;
 public final class VehiculoController {
 
 
-
 }
 
