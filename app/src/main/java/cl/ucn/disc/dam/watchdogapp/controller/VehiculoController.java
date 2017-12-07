@@ -12,8 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public final class VehiculoController {
-
-
     /**
      * Obtencion de {@link Vehiculo}
      *
