@@ -9,6 +9,7 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 import org.apache.commons.lang3.time.StopWatch;
 
 import cl.ucn.disc.dam.watchdogapp.dao.AppDatabase;
+import cl.ucn.disc.dam.watchdogapp.model.Persona;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -38,7 +39,6 @@ public final class App extends Application {
                     .build()
             );
         }
-
 
         // Timming
         log.debug("Initialization in: {}", stopWatch);

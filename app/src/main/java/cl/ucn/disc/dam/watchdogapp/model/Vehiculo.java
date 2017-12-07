@@ -14,7 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * @author JOHN
+ * @author JOHN QUINONES- JOSE DIAZ
  */
 @Builder
 @Table(database = AppDatabase.class)
