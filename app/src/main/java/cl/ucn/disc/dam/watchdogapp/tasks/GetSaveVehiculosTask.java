@@ -28,6 +28,7 @@ public final class GetSaveVehiculosTask extends AsyncTask<Void, Void, Integer> {
      * @param taskListener
      */
     public GetSaveVehiculosTask(TaskListener taskListener) {
+
         this.taskListener = taskListener;
     }
 
@@ -128,5 +129,7 @@ public final class GetSaveVehiculosTask extends AsyncTask<Void, Void, Integer> {
         void taskFinished(final int newsVehiculos);
 
     }
+
+
 
 }
