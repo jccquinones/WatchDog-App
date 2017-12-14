@@ -107,8 +107,12 @@ public final class VehiculoAdapter extends BaseAdapter {
         final Vehiculo vehiculo = this.getItem(position);
         if (vehiculo != null) {
 
-            viewHolder.title.setText(vehiculo.getColor());
-            viewHolder.description.setText(vehiculo.getDescripcion());
+            viewHolder.patente.setText(vehiculo.getPatente());
+            viewHolder.modelo.setText(vehiculo.getModelo());
+            //viewHolder.anio.setText(vehiculo.getAnio());
+            viewHolder.marca.setText(vehiculo.getMarca());
+            viewHolder.color.setText(vehiculo.getColor());
+            viewHolder.descripcion.setText(vehiculo.getDescripcion());
 
         }
 
@@ -154,7 +158,7 @@ public final class VehiculoAdapter extends BaseAdapter {
         ViewHolder(final View view) {
             this.patente = view.findViewById(R.id.ra_patente);
             this.modelo = view.findViewById(R.id.ra_modelo);
-            this.anio = view.findViewById(R.id.ra_anio);
+            //this.anio = view.findViewById(R.id.ra_anio);
             this.marca = view.findViewById(R.id.ra_marca);
             this.color = view.findViewById(R.id.ra_color);
             this.descripcion = view.findViewById(R.id.ra_descripcion);
