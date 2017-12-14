@@ -15,6 +15,7 @@
         android:layout_marginTop="10dp"
         android:text="Patente"
         android:textStyle="bold"
+        android:fontFamily="@font/EuroPlate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
