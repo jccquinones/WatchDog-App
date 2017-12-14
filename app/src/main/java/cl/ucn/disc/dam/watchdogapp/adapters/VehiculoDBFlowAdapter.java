@@ -180,7 +180,6 @@ public final class VehiculoDBFlowAdapter extends BaseAdapter {
         ViewHolder(final View view) {
             this.title = view.findViewById(R.id.ra_title);
             this.description = view.findViewById(R.id.ra_description);
-            this.date = view.findViewById(R.id.ra_date);
             this.source = view.findViewById(R.id.ra_source);
             this.uuid = view.findViewById(R.id.ra_uuid);
         }

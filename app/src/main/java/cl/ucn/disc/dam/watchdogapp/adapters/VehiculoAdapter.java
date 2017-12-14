@@ -1,9 +1,5 @@
 package cl.ucn.disc.dam.watchdogapp.adapters;
 
-/**
- * Created by JOHN on 07-12-2017.
- */
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  *
- * @author JOHN.
+ * @author Jose Diaz, John Quiñonez
  */
 @Slf4j
 public final class VehiculoAdapter extends BaseAdapter {
@@ -148,16 +144,20 @@ public final class VehiculoAdapter extends BaseAdapter {
      */
     private static class ViewHolder {
 
-        TextView title;
-        TextView description;
-        TextView date;
-        TextView source;
+        TextView patente;
+        TextView modelo;
+        TextView anio;
+        TextView marca;
+        TextView color;
+        TextView descripcion;
 
         ViewHolder(final View view) {
-            this.title = view.findViewById(R.id.ra_title);
-            this.description = view.findViewById(R.id.ra_description);
-            this.date = view.findViewById(R.id.ra_date);
-            this.source = view.findViewById(R.id.ra_source);
+            this.patente = view.findViewById(R.id.ra_patente);
+            this.modelo = view.findViewById(R.id.ra_modelo);
+            this.anio = view.findViewById(R.id.ra_anio);
+            this.marca = view.findViewById(R.id.ra_marca);
+            this.color = view.findViewById(R.id.ra_color);
+            this.descripcion = view.findViewById(R.id.ra_descripcion);
         }
 
     }

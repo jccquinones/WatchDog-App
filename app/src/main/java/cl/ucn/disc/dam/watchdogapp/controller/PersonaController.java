@@ -28,7 +28,7 @@ public class PersonaController {
 
         final Persona p1 = Persona.builder()
                 .nombre("Jose")
-                .rut(123456789)
+                .rut(185932533)
                 .telefono(99289998)
                 .build();
         personas.add(p1);

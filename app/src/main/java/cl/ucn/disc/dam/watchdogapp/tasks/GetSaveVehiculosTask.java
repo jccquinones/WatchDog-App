@@ -88,14 +88,14 @@ public final class GetSaveVehiculosTask extends AsyncTask<Void, Void, Integer> {
      */
     private List<Vehiculo> getVehiculos() {
 
-        /*final VehiculoController vehiculoController = new VehiculoController();
+        final VehiculoController vehiculoController = new VehiculoController();
 
         try {
             // Obtengo los vehiculos
             return vehiculoController.getVehiculos("techcrunch,ars-technica,engadget,buzzfeed,wired");
-        } catch (IOException e) {*/
+        } catch (IOException e) {
             return null;
-        //}
+        }
     }
 
     /**
