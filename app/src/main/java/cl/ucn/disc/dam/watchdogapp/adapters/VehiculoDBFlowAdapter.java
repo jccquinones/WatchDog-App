@@ -155,8 +155,12 @@ public final class VehiculoDBFlowAdapter extends BaseAdapter {
         final Vehiculo vehiculo = this.getItem(position);
         if (vehiculo != null) {
 
-            viewHolder.title.setText(vehiculo.getPatente());
-            viewHolder.description.setText(vehiculo.getDescripcion());
+            viewHolder.patente.setText(vehiculo.getPatente());
+            viewHolder.modelo.setText(vehiculo.getModelo());
+            viewHolder.anio.setText(vehiculo.getAnio());
+            viewHolder.marca.setText(vehiculo.getMarca());
+            viewHolder.color.setText(vehiculo.getColor());
+            viewHolder.descripcion.setText(vehiculo.getDescripcion());
             
             //viewHolder.uuid.setText(vehiculo.getId().toString());
 
@@ -171,17 +175,20 @@ public final class VehiculoDBFlowAdapter extends BaseAdapter {
     @Slf4j
     private static class ViewHolder {
 
-        TextView title;
-        TextView description;
-        TextView date;
-        TextView source;
-        TextView uuid;
+        TextView patente;
+        TextView modelo;
+        TextView anio;
+        TextView marca;
+        TextView color;
+        TextView descripcion;
 
         ViewHolder(final View view) {
-            this.title = view.findViewById(R.id.ra_title);
-            this.description = view.findViewById(R.id.ra_description);
-            this.source = view.findViewById(R.id.ra_source);
-            this.uuid = view.findViewById(R.id.ra_uuid);
+            this.patente = view.findViewById(R.id.ra_patente);
+            this.modelo = view.findViewById(R.id.ra_modelo);
+            this.anio = view.findViewById(R.id.ra_anio);
+            this.marca = view.findViewById(R.id.ra_marca);
+            this.color = view.findViewById(R.id.ra_color);
+            this.descripcion = view.findViewById(R.id.ra_descripcion);
         }
 
     }
