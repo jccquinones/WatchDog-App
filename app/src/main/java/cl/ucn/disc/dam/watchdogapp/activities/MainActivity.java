@@ -57,7 +57,7 @@ public final class MainActivity extends Activity implements GetSaveVehiculosTask
         // Mostrar la barrita
         final ActionBar actionBar = super.getActionBar();
         if (actionBar != null) {
-            // actionBar.setLogo(R.drawable.ic_launcher_foreground);
+            //actionBar.setLogo(R.drawable.ic_launcher_foreground);
             actionBar.setDisplayUseLogoEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);

@@ -159,7 +159,7 @@ public final class VehiculoAdapter extends BaseAdapter {
 
         ViewHolder(final View view) {
             this.patente = view.findViewById(R.id.ra_patente);
-            this.modelo = view.findViewById(R.id.ra_modelo);
+            this.modelo = view.findViewById(R.id.ra_modelo1);
             this.anio = view.findViewById(R.id.ra_anio);
             this.marca = view.findViewById(R.id.ra_marca);
             this.color = view.findViewById(R.id.ra_color);

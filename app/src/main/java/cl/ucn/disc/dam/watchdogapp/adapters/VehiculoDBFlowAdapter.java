@@ -7,12 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.raizlabs.android.dbflow.StringUtils;
 import com.raizlabs.android.dbflow.list.FlowCursorList;
 import com.raizlabs.android.dbflow.sql.language.OrderBy;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
-
-import java.util.Collections;
 
 import cl.ucn.disc.dam.watchdogapp.R;
 import cl.ucn.disc.dam.watchdogapp.model.Vehiculo;
@@ -185,7 +182,7 @@ public final class VehiculoDBFlowAdapter extends BaseAdapter {
 
         ViewHolder(final View view) {
             this.patente = view.findViewById(R.id.ra_patente);
-            this.modelo = view.findViewById(R.id.ra_modelo);
+            this.modelo = view.findViewById(R.id.ra_modelo1);
             this.anio = view.findViewById(R.id.ra_anio);
             this.marca = view.findViewById(R.id.ra_marca);
             this.color = view.findViewById(R.id.ra_color);

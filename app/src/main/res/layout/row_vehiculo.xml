@@ -29,10 +29,10 @@
         android:layout_marginTop="10dp"
         android:text="Descripcion"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ra_modelo" />
+        app:layout_constraintTop_toBottomOf="@+id/ra_modelo1" />
 
     <TextView
-        android:id="@+id/ra_modelo"
+        android:id="@+id/ra_modelo1"
         android:layout_width="99dp"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
@@ -68,7 +68,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:text="Color"
-        app:layout_constraintStart_toEndOf="@+id/ra_modelo"
+        app:layout_constraintStart_toEndOf="@+id/ra_modelo1"
         app:layout_constraintTop_toBottomOf="@+id/ra_marca" />
 
 </android.support.constraint.ConstraintLayout>
