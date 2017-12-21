@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  *
- * @author Jose Diaz, John Quiñonez
+ * @author Jose Diaz, John Quiñones
  */
 @Slf4j
 public final class VehiculoAdapter extends BaseAdapter {
