@@ -1,26 +1,33 @@
 package cl.ucn.disc.dam.watchdogapp.activities;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import cl.ucn.disc.dam.watchdogapp.R;
 import cl.ucn.disc.dam.watchdogapp.adapters.VehiculoDBFlowAdapter;
-import cl.ucn.disc.dam.watchdogapp.tasks.GetSavePersonasTask;
 import cl.ucn.disc.dam.watchdogapp.tasks.GetSaveVehiculosTask;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public final class MainActivity extends ListActivity implements GetSaveVehiculosTask.TaskListener {
+public final class MainActivity extends Activity implements GetSaveVehiculosTask.TaskListener {
 
     /**
      * Adapter de {@link cl.ucn.disc.dam.watchdogapp.model.Vehiculo}.
@@ -32,12 +39,20 @@ public final class MainActivity extends ListActivity implements GetSaveVehiculos
      */
     private GetSaveVehiculosTask getSaveVehiculosTask;
 
+    private ListView lv;
+
+    private EditText et;
+
+    private ArrayList<String> array_sort = new ArrayList<String>();
+    int textlength = 0;
+
     /**
      * @param savedInstanceState
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         // Mostrar la barrita
         final ActionBar actionBar = super.getActionBar();
@@ -51,18 +66,44 @@ public final class MainActivity extends ListActivity implements GetSaveVehiculos
 
         // Row division
         int[] colors = {0, 0xFFFF0000, 0};
-        this.getListView().setDivider(new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, colors));
-        this.getListView().setDividerHeight(5);
+        this.lv.setDivider(new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, colors));
+        this.lv.setDividerHeight(5);
 
+        // TODO : Arreglar adaptador cambiar listActivity a listView
         // Adaptador de vehiculos
         this.vehiculoAdapter = new VehiculoDBFlowAdapter(this);
-        super.setListAdapter(this.vehiculoAdapter);
+        lv.setAdapter(this.vehiculoAdapter);
 
-        // Si no hay articulos en el adaptador (y por lo tanto en la base de datos) ..
+        et.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                // Abstract Method of TextWatcher Interface.
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // Abstract Method of TextWatcher Interface.
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                textlength = et.getText().length();
+                array_sort.clear();
+
+                /*for (int i = 0; i < listview_array.length; i++) {
+                    if (textlength <= listview_array[i].length()) {
+                        if (et.getText().toString().equalsIgnoreCase((String) listview_array[i].subSequence(0, textlength))) {
+                            array_sort.add(listview_array[i]);
+                        }
+                    }
+                }*/
+
+                lv.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, array_sort));
+            }
+        });
+        // Si no hay articulos en el adaptador (y por lo tanto en la base de datos)
         if (this.vehiculoAdapter.isEmpty()) {
             // .. ejecuto la tarea para obtenerlas.
             this.runGetAndSaveVehiculosTask();
         }
+
 
     }
 
