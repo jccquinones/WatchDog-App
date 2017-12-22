@@ -29,6 +29,7 @@ import java.util.Locale;
 import cl.ucn.disc.dam.watchdogapp.R;
 import cl.ucn.disc.dam.watchdogapp.adapters.VehiculoAdapter;
 import cl.ucn.disc.dam.watchdogapp.adapters.VehiculoDBFlowAdapter;
+import cl.ucn.disc.dam.watchdogapp.model.Persona;
 import cl.ucn.disc.dam.watchdogapp.model.Vehiculo;
 import cl.ucn.disc.dam.watchdogapp.tasks.GetSaveVehiculosTask;
 import lombok.extern.slf4j.Slf4j;
@@ -53,6 +54,7 @@ public final class MainActivity extends Activity implements GetSaveVehiculosTask
     String[] country;
     String[] population;
     ArrayList<Vehiculo> arraylist = new ArrayList<Vehiculo>();
+    ArrayList<Persona> arrayPersona = new ArrayList<Persona>();
 
     /**
      * @param savedInstanceState
@@ -66,21 +68,14 @@ public final class MainActivity extends Activity implements GetSaveVehiculosTask
         /* ESTE ES UN EJEMPLO DE LISTVIEW */
         // Generate sample data
         // Se generan la lista para colocar en listview
-        rank = new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
 
-        country = new String[] { "China", "India", "United States",
-                "Indonesia", "Brazil", "Pakistan", "Nigeria", "Bangladesh",
-                "Russia", "Japan" };
-
-        population = new String[] { "1,354,040,000", "1,210,193,422",
-                "315,761,000", "237,641,326", "193,946,886", "182,912,000",
-                "170,901,000", "152,518,015", "143,369,806", "127,360,000" };
         final Vehiculo v1 = Vehiculo.builder().color("rojo").anio(2010).marca("chevrolet").patente("A12").descripcion("D1D1D1D1D1D1D1D1D1D1").modelo("Camaro").build();
         final Vehiculo v2 = Vehiculo.builder().color("azul").anio(2015).marca("suzuki").patente("A13").descripcion("D2D2D2D2D2D2D2D2D2D2").modelo("Celerio").build();
         final Vehiculo v3 = Vehiculo.builder().color("morado").anio(2017).marca("peugeot").patente("A14").descripcion("D3D3D3D3D3D3D3D3D3D3").modelo("3008").build();
         final Vehiculo v4 = Vehiculo.builder().color("blanca").anio(2008).marca("chevrolet").patente("A15").descripcion("D4D4D4D4D4D4D4D4D4D4").modelo("Luv").build();
         final Vehiculo v5 = Vehiculo.builder().color("gris").anio(1999).marca("volvo").patente("A16").descripcion("D5D5D5D5D5D5D5D5D5").modelo("v90").build();
-
+        final Persona p1 = Persona.builder().nombre("Jose Diaz").rut(185932533).telefono(99289998).numeroAnexo(10).correoElectronico("jdv004@gmail.com").cargo("Ayudante").localizacion("Unidad").tipo("Apoyo").build();
+        final Persona p2 = Persona.builder().nombre("John Quiñonez").rut(18853912).telefono(99321594).numeroAnexo(18).correoElectronico("jqm010@gmail.com").cargo("Profesor").localizacion("Oficina").tipo("Academico").build();
         // Locate the ListView in listview_main.xml
         list = (ListView) findViewById(R.id.list_view);
 
@@ -90,6 +85,8 @@ public final class MainActivity extends Activity implements GetSaveVehiculosTask
         arraylist.add(v3);
         arraylist.add(v4);
         arraylist.add(v5);
+        arrayPersona.add(p1);
+        arrayPersona.add(p2);
 
 
         // Mostrar la barrita

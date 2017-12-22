@@ -39,4 +39,16 @@ public final class Persona {
     @Column
     int numeroAnexo;
 
+    @Getter
+    @Column
+    String localizacion;
+
+    @Getter
+    @Column
+    String cargo;
+
+    @Getter
+    @Column
+    String tipo;
+
 }
