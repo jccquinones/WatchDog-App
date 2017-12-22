@@ -11,6 +11,8 @@ import com.raizlabs.android.dbflow.list.FlowCursorList;
 import com.raizlabs.android.dbflow.sql.language.OrderBy;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
+import java.util.Locale;
+
 import cl.ucn.disc.dam.watchdogapp.R;
 import cl.ucn.disc.dam.watchdogapp.model.Vehiculo;
 import cl.ucn.disc.dam.watchdogapp.model.Vehiculo_Table;
@@ -190,4 +192,7 @@ public final class VehiculoDBFlowAdapter extends BaseAdapter {
         }
 
     }
+
+
+
 }

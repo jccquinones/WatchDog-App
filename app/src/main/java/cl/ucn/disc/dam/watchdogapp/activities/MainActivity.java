@@ -1,26 +1,40 @@
 package cl.ucn.disc.dam.watchdogapp.activities;
 
 import android.app.ActionBar;
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Locale;
+
 import cl.ucn.disc.dam.watchdogapp.R;
+import cl.ucn.disc.dam.watchdogapp.adapters.VehiculoAdapter;
 import cl.ucn.disc.dam.watchdogapp.adapters.VehiculoDBFlowAdapter;
-import cl.ucn.disc.dam.watchdogapp.tasks.GetSavePersonasTask;
+import cl.ucn.disc.dam.watchdogapp.model.Vehiculo;
 import cl.ucn.disc.dam.watchdogapp.tasks.GetSaveVehiculosTask;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public final class MainActivity extends ListActivity implements GetSaveVehiculosTask.TaskListener {
+public final class MainActivity extends Activity implements GetSaveVehiculosTask.TaskListener {
 
     /**
      * Adapter de {@link cl.ucn.disc.dam.watchdogapp.model.Vehiculo}.
@@ -32,15 +46,54 @@ public final class MainActivity extends ListActivity implements GetSaveVehiculos
      */
     private GetSaveVehiculosTask getSaveVehiculosTask;
 
+    // Declare Variables
+    ListView list;
+    EditText editsearch;
+    String[] rank;
+    String[] country;
+    String[] population;
+    ArrayList<Vehiculo> arraylist = new ArrayList<Vehiculo>();
+
     /**
      * @param savedInstanceState
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // TODO : BORRAR TODO LO ETIQUETADO CON EJEMPLO DE LISTVIEW
+        /* ESTE ES UN EJEMPLO DE LISTVIEW */
+        // Generate sample data
+        // Se generan la lista para colocar en listview
+        rank = new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+
+        country = new String[] { "China", "India", "United States",
+                "Indonesia", "Brazil", "Pakistan", "Nigeria", "Bangladesh",
+                "Russia", "Japan" };
+
+        population = new String[] { "1,354,040,000", "1,210,193,422",
+                "315,761,000", "237,641,326", "193,946,886", "182,912,000",
+                "170,901,000", "152,518,015", "143,369,806", "127,360,000" };
+        final Vehiculo v1 = Vehiculo.builder().color("rojo").anio(2010).marca("chevrolet").patente("A12").descripcion("D1D1D1D1D1D1D1D1D1D1").modelo("Camaro").build();
+        final Vehiculo v2 = Vehiculo.builder().color("azul").anio(2015).marca("suzuki").patente("A13").descripcion("D2D2D2D2D2D2D2D2D2D2").modelo("Celerio").build();
+        final Vehiculo v3 = Vehiculo.builder().color("morado").anio(2017).marca("peugeot").patente("A14").descripcion("D3D3D3D3D3D3D3D3D3D3").modelo("3008").build();
+        final Vehiculo v4 = Vehiculo.builder().color("blanca").anio(2008).marca("chevrolet").patente("A15").descripcion("D4D4D4D4D4D4D4D4D4D4").modelo("Luv").build();
+        final Vehiculo v5 = Vehiculo.builder().color("gris").anio(1999).marca("volvo").patente("A16").descripcion("D5D5D5D5D5D5D5D5D5").modelo("v90").build();
+
+        // Locate the ListView in listview_main.xml
+        list = (ListView) findViewById(R.id.list_view);
+
+        /* ESTO ES UN EJEMPLO DE LISTVIEW */
+        arraylist.add(v1);
+        arraylist.add(v2);
+        arraylist.add(v3);
+        arraylist.add(v4);
+        arraylist.add(v5);
+
 
         // Mostrar la barrita
-        final ActionBar actionBar = super.getActionBar();
+        /*final ActionBar actionBar = super.getActionBar();
         if (actionBar != null) {
             //actionBar.setLogo(R.drawable.ic_launcher_foreground);
             actionBar.setDisplayUseLogoEnabled(true);
@@ -53,16 +106,57 @@ public final class MainActivity extends ListActivity implements GetSaveVehiculos
         int[] colors = {0, 0xFFFF0000, 0};
         this.getListView().setDivider(new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, colors));
         this.getListView().setDividerHeight(5);
-
+        */
         // Adaptador de vehiculos
+        //this.vehiculoAdapter = new VehiculoDBFlowAdapter(this);
+        //super.setListAdapter(this.vehiculoAdapter);
+
         this.vehiculoAdapter = new VehiculoDBFlowAdapter(this);
-        super.setListAdapter(this.vehiculoAdapter);
+
+        list.setAdapter(this.vehiculoAdapter);
 
         // Si no hay articulos en el adaptador (y por lo tanto en la base de datos) ..
         if (this.vehiculoAdapter.isEmpty()) {
             // .. ejecuto la tarea para obtenerlas.
             this.runGetAndSaveVehiculosTask();
+        } else{
+            // Locate the EditText in listview_main.xml
+            editsearch = (EditText) findViewById(R.id.rv_filtro);
+
+            // Capture Text in EditText
+            editsearch.addTextChangedListener(new TextWatcher() {
+
+                @Override
+                public void afterTextChanged(Editable arg0) {
+                    // TODO Auto-generated method stub
+                    String text = editsearch.getText().toString().toLowerCase(Locale.getDefault());
+                    //this.vehiculoAdapter.filter(text);
+                }
+
+                @Override
+                public void beforeTextChanged(CharSequence arg0, int arg1,
+                                              int arg2, int arg3) {
+                    // TODO Auto-generated method stub
+                }
+
+                @Override
+                public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+                                          int arg3) {
+                    // TODO Auto-generated method stub
+                }
+            });
         }
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Vehiculo auto = (Vehiculo) parent.getItemAtPosition(position);
+                Intent Siguiente = new Intent(getApplicationContext(),pop_up_activity.class);
+                Siguiente.putExtra("autite",auto);
+                startActivity(Siguiente);
+            }
+        });
+
 
     }
 

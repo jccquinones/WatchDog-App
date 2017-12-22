@@ -8,6 +8,8 @@ import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
+import java.io.Serializable;
+
 import cl.ucn.disc.dam.watchdogapp.dao.AppDatabase;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,13 +17,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * @author JOHN QUINONES- JOSE DIAZ
+ * @author Jose Diaz, John Quiñonez
  */
 @Builder
 @Table(database = AppDatabase.class)
 @AllArgsConstructor
 @NoArgsConstructor
-public final class Vehiculo {
+public final class Vehiculo implements Serializable {
 
     @PrimaryKey
     @Getter
@@ -49,11 +51,7 @@ public final class Vehiculo {
 
     @Getter
     @Column
-    @ForeignKey(references = {
-            @ForeignKeyReference(columnName = "rut",
-                    columnType = Integer.class,
-            , saveForeignKeyModel = false)}
-    int rut;
+    int rut_dueno;
 
 
 
