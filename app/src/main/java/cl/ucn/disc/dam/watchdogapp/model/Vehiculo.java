@@ -2,6 +2,7 @@ package cl.ucn.disc.dam.watchdogapp.model;
 
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ForeignKey;
+import com.raizlabs.android.dbflow.annotation.ForeignKeyReference;
 import com.raizlabs.android.dbflow.annotation.OneToMany;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
@@ -45,5 +46,15 @@ public final class Vehiculo {
     @Getter
     @Column
     String descripcion;
+
+    @Getter
+    @Column
+    @ForeignKey(references = {
+            @ForeignKeyReference(columnName = "rut",
+                    columnType = Integer.class,
+            , saveForeignKeyModel = false)}
+    int rut;
+
+
 
 }
