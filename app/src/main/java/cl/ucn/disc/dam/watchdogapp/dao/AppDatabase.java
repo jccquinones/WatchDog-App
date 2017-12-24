@@ -4,7 +4,7 @@ package cl.ucn.disc.dam.watchdogapp.dao;
 import com.raizlabs.android.dbflow.annotation.Database;
 
 /**
- * @author JOHN
+ * @author Jose Diaz, John Quiñonez
  */
 @Database(version = AppDatabase.VERSION)
 public final class AppDatabase {

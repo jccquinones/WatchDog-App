@@ -122,7 +122,7 @@ public final class VehiculoAdapter extends BaseAdapter {
     }
 
     /**
-     * Agrega un listado de articulos al {@link List} de {@link Vehiculo}.
+     * Agrega un listado de vehiculos al {@link List} de {@link Vehiculo}.
      *
      * @param vehiculos
      * @return VehiculoAdapter

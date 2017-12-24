@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * @author JOHN
+ * @author Jose Diaz, John Quiñonez
  */
 @Builder
 @Table(database = AppDatabase.class)
@@ -38,5 +38,17 @@ public final class Persona {
     @Getter
     @Column
     int numeroAnexo;
+
+    @Getter
+    @Column
+    String localizacion;
+
+    @Getter
+    @Column
+    String cargo;
+
+    @Getter
+    @Column
+    String tipo;
 
 }
