@@ -35,7 +35,7 @@ public final class MainActivity extends Activity implements GetSaveVehiculosTask
     /**
      * Adapter de {@link cl.ucn.disc.dam.watchdogapp.model.Vehiculo}.
      */
-    private BaseAdapter vehiculoAdapter;
+    private VehiculoDBFlowAdapter vehiculoAdapter;
 
     /**
      * Running background task
@@ -116,6 +116,7 @@ public final class MainActivity extends Activity implements GetSaveVehiculosTask
             // .. ejecuto la tarea para obtenerlas.
             this.runGetAndSaveVehiculosTask();
         } else{
+
             // Locate the EditText in listview_main.xml
             editsearch = (EditText) findViewById(R.id.rv_filtro);
 
@@ -126,7 +127,7 @@ public final class MainActivity extends Activity implements GetSaveVehiculosTask
                 public void afterTextChanged(Editable arg0) {
                     // TODO Auto-generated method stub
                     String text = editsearch.getText().toString().toLowerCase(Locale.getDefault());
-                    //this.vehiculoAdapter.filter(text);
+                    vehiculoAdapter.filter(text);
                 }
 
                 @Override

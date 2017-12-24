@@ -23,12 +23,12 @@ import lombok.extern.slf4j.Slf4j;
  * @author JOHN on 07-12-2017.
  */
 @Slf4j
-public final class VehiculoDBFlowAdapter extends BaseAdapter {
+public class VehiculoDBFlowAdapter extends BaseAdapter {
 
     /**
      * FlowDB
      */
-    private final FlowCursorList<Vehiculo> flowCursorList;
+    private FlowCursorList<Vehiculo> flowCursorList;
 
     /**
      * Context
@@ -193,6 +193,41 @@ public final class VehiculoDBFlowAdapter extends BaseAdapter {
 
     }
 
-
+    // Filter Class
+    public void filter(String charText) {
+        charText = charText.toLowerCase(Locale.getDefault());
+        // SQL to get data
+        this.flowCursorList = new FlowCursorList.Builder<>(
+                SQLite.select()
+                        .from(Vehiculo.class)
+                        .where(Vehiculo_Table.patente.is(charText))
+                        .orderBy(OrderBy.fromProperty(Vehiculo_Table.patente))
+        ).build();
+        if (charText.length() == 0) {
+            //worldpopulationlist.addAll(arraylist);
+            this.flowCursorList = new FlowCursorList.Builder<>(
+                    SQLite.select()
+                            .from(Vehiculo.class)
+                            .orderBy(OrderBy.fromProperty(Vehiculo_Table.patente))
+            ).build();
+        }
+        else
+        {
+            this.flowCursorList = new FlowCursorList.Builder<>(
+                    SQLite.select()
+                            .from(Vehiculo.class)
+                            .where(Vehiculo_Table.patente.like("%"+charText+"%"))
+                            .orderBy(OrderBy.fromProperty(Vehiculo_Table.patente))
+            ).build();
+            /*for (WorldPopulation wp : arraylist)
+            {
+                if (wp.getCountry().toLowerCase(Locale.getDefault()).contains(charText))
+                {
+                    worldpopulationlist.add(wp);
+                }
+            }*/
+        }
+        notifyDataSetChanged();
+    }
 
 }
