@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author Jose Diaz, John Quiñonez
@@ -50,8 +51,8 @@ public final class Vehiculo implements Serializable {
     String descripcion;
 
     @Getter
-    @Column
-    int rut_dueno;
+    @Setter
+    Persona dueno;
 
 
 

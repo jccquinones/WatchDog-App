@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import cl.ucn.disc.dam.watchdogapp.R;
+import cl.ucn.disc.dam.watchdogapp.adapters.PersonaDBFlowAdapter;
 import cl.ucn.disc.dam.watchdogapp.adapters.VehiculoAdapter;
 import cl.ucn.disc.dam.watchdogapp.adapters.VehiculoDBFlowAdapter;
 import cl.ucn.disc.dam.watchdogapp.model.Persona;
@@ -35,12 +36,17 @@ import cl.ucn.disc.dam.watchdogapp.tasks.GetSaveVehiculosTask;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public final class MainActivity extends Activity implements GetSaveVehiculosTask.TaskListener {
+public final class MainActivity extends AppCompatActivity implements GetSaveVehiculosTask.TaskListener {
 
     /**
      * Adapter de {@link cl.ucn.disc.dam.watchdogapp.model.Vehiculo}.
      */
     private BaseAdapter vehiculoAdapter;
+
+    /**
+     * Adapter de {@link cl.ucn.disc.dam.watchdogapp.model.Persona}.
+     */
+    private BaseAdapter personaAdapter;
 
     /**
      * Running background task
@@ -68,14 +74,18 @@ public final class MainActivity extends Activity implements GetSaveVehiculosTask
         /* ESTE ES UN EJEMPLO DE LISTVIEW */
         // Generate sample data
         // Se generan la lista para colocar en listview
-
-        final Vehiculo v1 = Vehiculo.builder().color("rojo").anio(2010).marca("chevrolet").patente("A12").descripcion("D1D1D1D1D1D1D1D1D1D1").modelo("Camaro").build();
-        final Vehiculo v2 = Vehiculo.builder().color("azul").anio(2015).marca("suzuki").patente("A13").descripcion("D2D2D2D2D2D2D2D2D2D2").modelo("Celerio").build();
-        final Vehiculo v3 = Vehiculo.builder().color("morado").anio(2017).marca("peugeot").patente("A14").descripcion("D3D3D3D3D3D3D3D3D3D3").modelo("3008").build();
-        final Vehiculo v4 = Vehiculo.builder().color("blanca").anio(2008).marca("chevrolet").patente("A15").descripcion("D4D4D4D4D4D4D4D4D4D4").modelo("Luv").build();
-        final Vehiculo v5 = Vehiculo.builder().color("gris").anio(1999).marca("volvo").patente("A16").descripcion("D5D5D5D5D5D5D5D5D5").modelo("v90").build();
-        final Persona p1 = Persona.builder().nombre("Jose Diaz").rut(185932533).telefono(99289998).numeroAnexo(10).correoElectronico("jdv004@gmail.com").cargo("Ayudante").localizacion("Unidad").tipo("Apoyo").build();
-        final Persona p2 = Persona.builder().nombre("John Quiñonez").rut(18853912).telefono(99321594).numeroAnexo(18).correoElectronico("jqm010@gmail.com").cargo("Profesor").localizacion("Oficina").tipo("Academico").build();
+        Persona p1 = Persona.builder().nombre("Jose Diaz").rut(185932533).telefono(99289998).numeroAnexo(10).correoElectronico("jdv004@gmail.com").cargo("Ayudante").localizacion("Unidad").tipo("Apoyo").build();
+        Persona p2 = Persona.builder().nombre("John Quiñonez").rut(18853912).telefono(99321594).numeroAnexo(18).correoElectronico("jqm010@gmail.com").cargo("Profesor").localizacion("Oficina").tipo("Academico").build();
+        Vehiculo v1 = Vehiculo.builder().color("rojo").anio(2010).marca("chevrolet").patente("A12").descripcion("D1D1D1D1D1D1D1D1D1D1").modelo("Camaro").dueno(p1).build();
+        Vehiculo v2 = Vehiculo.builder().color("azul").anio(2015).marca("suzuki").patente("A13").descripcion("D2D2D2D2D2D2D2D2D2D2").modelo("Celerio").dueno(p2).build();
+        Vehiculo v3 = Vehiculo.builder().color("morado").anio(2017).marca("peugeot").patente("A14").descripcion("D3D3D3D3D3D3D3D3D3D3").modelo("3008").dueno(p2).build();
+        Vehiculo v4 = Vehiculo.builder().color("blanca").anio(2008).marca("chevrolet").patente("A15").descripcion("D4D4D4D4D4D4D4D4D4D4").modelo("Luv").dueno(p1).build();
+        Vehiculo v5 = Vehiculo.builder().color("gris").anio(1999).marca("volvo").patente("A16").descripcion("D5D5D5D5D5D5D5D5D5").modelo("v90").dueno(p1).build();
+        v1.setDueno(p1);
+        v2.setDueno(p2);
+        v3.setDueno(p2);
+        v4.setDueno(p1);
+        v5.setDueno(p1);
         // Locate the ListView in listview_main.xml
         list = (ListView) findViewById(R.id.list_view);
 
@@ -109,6 +119,7 @@ public final class MainActivity extends Activity implements GetSaveVehiculosTask
         //super.setListAdapter(this.vehiculoAdapter);
 
         this.vehiculoAdapter = new VehiculoDBFlowAdapter(this);
+        this.personaAdapter = new PersonaDBFlowAdapter(this);
 
         list.setAdapter(this.vehiculoAdapter);
 
