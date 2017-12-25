@@ -41,7 +41,7 @@ public final class MainActivity extends AppCompatActivity implements GetSaveVehi
     /**
      * Adapter de {@link cl.ucn.disc.dam.watchdogapp.model.Vehiculo}.
      */
-    private BaseAdapter vehiculoAdapter;
+    private VehiculoDBFlowAdapter vehiculoAdapter;
 
     /**
      * Adapter de {@link cl.ucn.disc.dam.watchdogapp.model.Persona}.
@@ -128,6 +128,7 @@ public final class MainActivity extends AppCompatActivity implements GetSaveVehi
             // .. ejecuto la tarea para obtenerlas.
             this.runGetAndSaveVehiculosTask();
         } else{
+
             // Locate the EditText in listview_main.xml
             editsearch = (EditText) findViewById(R.id.rv_filtro);
 
@@ -138,7 +139,7 @@ public final class MainActivity extends AppCompatActivity implements GetSaveVehi
                 public void afterTextChanged(Editable arg0) {
                     // TODO Auto-generated method stub
                     String text = editsearch.getText().toString().toLowerCase(Locale.getDefault());
-                    //this.vehiculoAdapter.filter(text);
+                    vehiculoAdapter.filter(text);
                 }
 
                 @Override
