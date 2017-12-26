@@ -3,10 +3,17 @@ package cl.ucn.disc.dam.watchdogapp.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+
+import java.util.Calendar;
 
 import cl.ucn.disc.dam.watchdogapp.R;
+import cl.ucn.disc.dam.watchdogapp.model.RegistroIngreso;
 import cl.ucn.disc.dam.watchdogapp.model.Vehiculo;
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,6 +33,9 @@ public class pop_up_activity extends AppCompatActivity {
     TextView cargo;
     TextView local;
     TextView correo;
+    RadioGroup rg;
+    RadioButton rb;
+    Vehiculo auto = new Vehiculo();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +57,7 @@ public class pop_up_activity extends AppCompatActivity {
         local = (TextView) findViewById(R.id.ra_localizacion2);
         correo = (TextView) findViewById(R.id.ra_correo2);
 
-        Vehiculo auto = (Vehiculo) getIntent().getExtras().getSerializable("autite");
+        auto = (Vehiculo) getIntent().getExtras().getSerializable("autite");
 
         int anioAuto = auto.getAnio();
         String anioAutoStr = String.valueOf(anioAuto);
@@ -71,5 +81,18 @@ public class pop_up_activity extends AppCompatActivity {
         local.setText(auto.getDueno().getLocalizacion());
         tipo.setText(auto.getDueno().getTipo());
         cargo.setText(auto.getDueno().getCargo());
+        rg = (RadioGroup) findViewById(R.id.radio_group);
+    }
+
+
+    public void insertarReg(View view){
+        Calendar c = Calendar.getInstance();
+        int radiobuttonid = rg.getCheckedRadioButtonId();
+        rb = (RadioButton) findViewById(radiobuttonid);
+        String opcion = rb.getText().toString();
+        final RegistroIngreso r1 = RegistroIngreso.builder().porteria(opcion).fecha(c.getTime()).patenteVehiculo(auto.getPatente()).build();
+        r1.save();
+        Toast.makeText(getApplication(),"El registro se ingresó exitosamente!", Toast.LENGTH_LONG).show();
+
     }
 }
