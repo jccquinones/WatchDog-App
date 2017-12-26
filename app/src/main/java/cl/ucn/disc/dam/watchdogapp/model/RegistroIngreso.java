@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author Jose Diaz, John Quiñonez
@@ -21,12 +22,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public final class RegistroIngreso {
 
+    //Número de estacionamiento
+    @PrimaryKey(autoincrement = true)
+    @Getter
+    @Setter
+    int NumEst;
+
     @Getter
     @Column
     String porteria;
 
     @Getter
-    @PrimaryKey
     Date fecha;
 
 }

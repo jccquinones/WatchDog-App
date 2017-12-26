@@ -7,6 +7,10 @@ import com.raizlabs.android.dbflow.annotation.OneToMany;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
+import com.raizlabs.android.dbflow.structure.BaseModel;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.io.Serializable;
 
@@ -24,7 +28,7 @@ import lombok.Setter;
 @Table(database = AppDatabase.class)
 @AllArgsConstructor
 @NoArgsConstructor
-public final class Vehiculo implements Serializable {
+public final class Vehiculo extends BaseModel implements Serializable {
 
     @PrimaryKey
     @Getter
@@ -50,10 +54,10 @@ public final class Vehiculo implements Serializable {
     @Column
     String descripcion;
 
+    @ForeignKey(saveForeignKeyModel = true)
     @Getter
-    @Setter
+    @Column
     Persona dueno;
-
 
 
 }

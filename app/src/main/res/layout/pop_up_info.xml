@@ -153,7 +153,7 @@
 
     <TextView
         android:id="@+id/ra_localizacion1"
-        android:layout_width="80dp"
+        android:layout_width="100dp"
         android:layout_height="20dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -264,7 +264,7 @@
     <TextView
         android:id="@+id/ra_telefono2"
         android:layout_width="200dp"
-        android:layout_height="24dp"
+        android:layout_height="20dp"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="8dp"
         android:text="telefono"
@@ -310,4 +310,44 @@
         android:text="cargo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ra_tipo2" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="197dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="Ingresar Registro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <RadioGroup
+        android:layout_width="161dp"
+        android:layout_height="84dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Portería Sur" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Porteria Norte" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Porteria Centro" />
+    </RadioGroup>
 </android.support.constraint.ConstraintLayout>

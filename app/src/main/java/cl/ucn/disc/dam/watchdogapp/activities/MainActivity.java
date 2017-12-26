@@ -1,13 +1,6 @@
 package cl.ucn.disc.dam.watchdogapp.activities;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
-import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -27,8 +19,6 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import cl.ucn.disc.dam.watchdogapp.R;
-import cl.ucn.disc.dam.watchdogapp.adapters.PersonaDBFlowAdapter;
-import cl.ucn.disc.dam.watchdogapp.adapters.VehiculoAdapter;
 import cl.ucn.disc.dam.watchdogapp.adapters.VehiculoDBFlowAdapter;
 import cl.ucn.disc.dam.watchdogapp.model.Persona;
 import cl.ucn.disc.dam.watchdogapp.model.Vehiculo;
@@ -56,9 +46,6 @@ public final class MainActivity extends AppCompatActivity implements GetSaveVehi
     // Declare Variables
     ListView list;
     EditText editsearch;
-    String[] rank;
-    String[] country;
-    String[] population;
     ArrayList<Vehiculo> arraylist = new ArrayList<Vehiculo>();
     ArrayList<Persona> arrayPersona = new ArrayList<Persona>();
 
@@ -74,18 +61,13 @@ public final class MainActivity extends AppCompatActivity implements GetSaveVehi
         /* ESTE ES UN EJEMPLO DE LISTVIEW */
         // Generate sample data
         // Se generan la lista para colocar en listview
-        Persona p1 = Persona.builder().nombre("Jose Diaz").rut(185932533).telefono(99289998).numeroAnexo(10).correoElectronico("jdv004@gmail.com").cargo("Ayudante").localizacion("Unidad").tipo("Apoyo").build();
-        Persona p2 = Persona.builder().nombre("John Quiñonez").rut(18853912).telefono(99321594).numeroAnexo(18).correoElectronico("jqm010@gmail.com").cargo("Profesor").localizacion("Oficina").tipo("Academico").build();
-        Vehiculo v1 = Vehiculo.builder().color("rojo").anio(2010).marca("chevrolet").patente("A12").descripcion("D1D1D1D1D1D1D1D1D1D1").modelo("Camaro").dueno(p1).build();
-        Vehiculo v2 = Vehiculo.builder().color("azul").anio(2015).marca("suzuki").patente("A13").descripcion("D2D2D2D2D2D2D2D2D2D2").modelo("Celerio").dueno(p2).build();
-        Vehiculo v3 = Vehiculo.builder().color("morado").anio(2017).marca("peugeot").patente("A14").descripcion("D3D3D3D3D3D3D3D3D3D3").modelo("3008").dueno(p2).build();
-        Vehiculo v4 = Vehiculo.builder().color("blanca").anio(2008).marca("chevrolet").patente("A15").descripcion("D4D4D4D4D4D4D4D4D4D4").modelo("Luv").dueno(p1).build();
-        Vehiculo v5 = Vehiculo.builder().color("gris").anio(1999).marca("volvo").patente("A16").descripcion("D5D5D5D5D5D5D5D5D5").modelo("v90").dueno(p1).build();
-        v1.setDueno(p1);
-        v2.setDueno(p2);
-        v3.setDueno(p2);
-        v4.setDueno(p1);
-        v5.setDueno(p1);
+        final Persona p1 = Persona.builder().nombre("Jose Diaz").rut(185932533).telefono(99289998).numeroAnexo(10).correoElectronico("jdv004@gmail.com").cargo("Ayudante").localizacion("Unidad").tipo("Apoyo").build();
+        final Persona p2 = Persona.builder().nombre("John Quiñonez").rut(18853912).telefono(99321594).numeroAnexo(18).correoElectronico("jqm010@gmail.com").cargo("Profesor").localizacion("Oficina").tipo("Academico").build();
+        final Vehiculo v1 = Vehiculo.builder().color("rojo").anio(2010).marca("chevrolet").patente("AI-RL-67").descripcion("D1D1D1D1D1D1D1D1D1D1").modelo("Camaro").dueno(p1).build();
+        final Vehiculo v2 = Vehiculo.builder().color("azul").anio(2015).marca("suzuki").patente("AL-PK-57").descripcion("D2D2D2D2D2D2D2D2D2D2").modelo("Celerio").dueno(p2).build();
+        final Vehiculo v3 = Vehiculo.builder().color("morado").anio(2017).marca("peugeot").patente("AL-RQ-41").descripcion("D3D3D3D3D3D3D3D3D3D3").modelo("3008").dueno(p2).build();
+        final Vehiculo v4 = Vehiculo.builder().color("blanca").anio(2008).marca("chevrolet").patente("AN-LN-69").descripcion("D4D4D4D4D4D4D4D4D4D4").modelo("Luv").dueno(p1).build();
+        final Vehiculo v5 = Vehiculo.builder().color("gris").anio(1999).marca("volvo").patente("BB-KV-90").descripcion("D5D5D5D5D5D5D5D5D5").modelo("v90").dueno(p1).build();
         // Locate the ListView in listview_main.xml
         list = (ListView) findViewById(R.id.list_view);
 
@@ -97,6 +79,14 @@ public final class MainActivity extends AppCompatActivity implements GetSaveVehi
         arraylist.add(v5);
         arrayPersona.add(p1);
         arrayPersona.add(p2);
+
+        p1.save();
+        p2.save();
+        v1.save();
+        v2.save();
+        v3.save();
+        v4.save();
+        v5.save();
 
 
         // Mostrar la barrita
@@ -119,7 +109,6 @@ public final class MainActivity extends AppCompatActivity implements GetSaveVehi
         //super.setListAdapter(this.vehiculoAdapter);
 
         this.vehiculoAdapter = new VehiculoDBFlowAdapter(this);
-        this.personaAdapter = new PersonaDBFlowAdapter(this);
 
         list.setAdapter(this.vehiculoAdapter);
 
