@@ -225,13 +225,6 @@ public class VehiculoDBFlowAdapter extends BaseAdapter {
                             .where(Vehiculo_Table.patente.like("%"+charText+"%"))
                             .orderBy(OrderBy.fromProperty(Vehiculo_Table.patente))
             ).build();
-            /*for (WorldPopulation wp : arraylist)
-            {
-                if (wp.getCountry().toLowerCase(Locale.getDefault()).contains(charText))
-                {
-                    worldpopulationlist.add(wp);
-                }
-            }*/
         }
         notifyDataSetChanged();
     }

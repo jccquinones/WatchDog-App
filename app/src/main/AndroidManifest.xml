@@ -18,6 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.pop_up_activity"></activity>
+        <activity android:name=".activities.RegistroPatenteActivity"></activity>
+
     </application>
 
 </manifest>
