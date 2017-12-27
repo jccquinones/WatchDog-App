@@ -7,7 +7,7 @@ import java.util.List;
 import cl.ucn.disc.dam.watchdogapp.model.Persona;
 
 /**
- * Created by JOHN on 07-12-2017.
+ * Jose Diaz, John Quiñones
  */
 
 public class PersonaController {

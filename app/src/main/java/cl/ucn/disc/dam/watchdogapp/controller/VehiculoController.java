@@ -1,7 +1,7 @@
 package cl.ucn.disc.dam.watchdogapp.controller;
 
 /**
- * Created by eskal on 07/12/2017.
+ * Jose Diaz, John Quiñones
  */
 
 import java.io.IOException;

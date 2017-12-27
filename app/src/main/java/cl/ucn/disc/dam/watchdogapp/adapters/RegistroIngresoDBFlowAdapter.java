@@ -14,8 +14,8 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import java.util.Locale;
 
 import cl.ucn.disc.dam.watchdogapp.R;
-import cl.ucn.disc.dam.watchdogapp.model.Vehiculo;
-import cl.ucn.disc.dam.watchdogapp.model.Vehiculo_Table;
+import cl.ucn.disc.dam.watchdogapp.model.RegistroIngreso;
+import cl.ucn.disc.dam.watchdogapp.model.RegistroIngreso_Table;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,12 +23,12 @@ import lombok.extern.slf4j.Slf4j;
  * @author Jose Diaz, John Quiñones
  */
 @Slf4j
-public class VehiculoDBFlowAdapter extends BaseAdapter {
+public class RegistroIngresoDBFlowAdapter extends BaseAdapter {
 
     /**
      * FlowDB
      */
-    private FlowCursorList<Vehiculo> flowCursorList;
+    private FlowCursorList<RegistroIngreso> flowCursorList;
 
     /**
      * Context
@@ -44,15 +44,15 @@ public class VehiculoDBFlowAdapter extends BaseAdapter {
      *
      * @param context to get the {@link LayoutInflater}.
      */
-    public VehiculoDBFlowAdapter(@NonNull final Context context) {
+    public RegistroIngresoDBFlowAdapter(@NonNull final Context context) {
 
         this.context = context;
 
         // SQL to get data
         this.flowCursorList = new FlowCursorList.Builder<>(
                 SQLite.select()
-                        .from(Vehiculo.class)
-                        .orderBy(OrderBy.fromProperty(Vehiculo_Table.patente))
+                        .from(RegistroIngreso.class)
+                        .orderBy(OrderBy.fromProperty(RegistroIngreso_Table.fecha).descending())
         ).build();
 
         // Data in the backend
@@ -101,7 +101,7 @@ public class VehiculoDBFlowAdapter extends BaseAdapter {
      * @return The data at the specified position.
      */
     @Override
-    public Vehiculo getItem(int position) {
+    public RegistroIngreso getItem(int position) {
         return flowCursorList.getItem(position);
     }
 
@@ -141,7 +141,7 @@ public class VehiculoDBFlowAdapter extends BaseAdapter {
         final View view;
 
         if (convertView == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.row_vehiculo, parent, false);
+            view = LayoutInflater.from(context).inflate(R.layout.row_registro, parent, false);
             viewHolder = new ViewHolder(view);
             view.setTag(viewHolder);
 
@@ -151,21 +151,12 @@ public class VehiculoDBFlowAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        final Vehiculo vehiculo = this.getItem(position);
-        if (vehiculo != null) {
-            int anio1 = vehiculo.getAnio();
-            String anioStr = String.valueOf(anio1);
-            viewHolder.patente.setText(vehiculo.getPatente());
-            viewHolder.modelo.setText(vehiculo.getModelo());
-            viewHolder.anio.setText(anioStr);
-            viewHolder.marca.setText(vehiculo.getMarca());
-            viewHolder.color.setText(vehiculo.getColor());
-            viewHolder.descripcion.setText(vehiculo.getDescripcion());
-            viewHolder.dueno.setText(vehiculo.getDueno().getNombre());
-            viewHolder.tipo.setText(vehiculo.getDueno().getTipo());
-            
-            //viewHolder.uuid.setText(vehiculo.getId().toString());
+        final RegistroIngreso registro = this.getItem(position);
+        if (registro != null) {
 
+            viewHolder.porteria.setText(registro.getPorteria());
+            viewHolder.patente.setText(registro.getPatenteVehiculo());
+            viewHolder.fecha.setText(registro.getFecha().toString());
         }
 
         return view;
@@ -178,62 +169,16 @@ public class VehiculoDBFlowAdapter extends BaseAdapter {
     private static class ViewHolder {
 
         TextView patente;
-        TextView modelo;
-        TextView anio;
-        TextView marca;
-        TextView color;
-        TextView descripcion;
-        TextView dueno;
-        TextView tipo;
+        TextView fecha;
+        TextView porteria;
 
         ViewHolder(final View view) {
-            this.patente = view.findViewById(R.id.ra_patente);
-            this.modelo = view.findViewById(R.id.ra_modelo1);
-            this.anio = view.findViewById(R.id.ra_anio);
-            this.marca = view.findViewById(R.id.ra_marca);
-            this.color = view.findViewById(R.id.ra_color);
-            this.descripcion = view.findViewById(R.id.ra_descripcion);
-            this.dueno = view.findViewById(R.id.ra_dueno);
-            this.tipo = view.findViewById(R.id.ra_tipo);
+            this.patente = view.findViewById(R.id.ra_patente3);
+            this.fecha = view.findViewById(R.id.ra_fecha);
+            this.porteria = view.findViewById(R.id.ra_porteria);
+
         }
 
-    }
-
-    // Filter Class
-    public void filter(String charText) {
-        charText = charText.toLowerCase(Locale.getDefault());
-        // SQL to get data
-        this.flowCursorList = new FlowCursorList.Builder<>(
-                SQLite.select()
-                        .from(Vehiculo.class)
-                        .where(Vehiculo_Table.patente.is(charText))
-                        .orderBy(OrderBy.fromProperty(Vehiculo_Table.patente))
-        ).build();
-        if (charText.length() == 0) {
-            //worldpopulationlist.addAll(arraylist);
-            this.flowCursorList = new FlowCursorList.Builder<>(
-                    SQLite.select()
-                            .from(Vehiculo.class)
-                            .orderBy(OrderBy.fromProperty(Vehiculo_Table.patente))
-            ).build();
-        }
-        else
-        {
-            this.flowCursorList = new FlowCursorList.Builder<>(
-                    SQLite.select()
-                            .from(Vehiculo.class)
-                            .where(Vehiculo_Table.patente.like("%"+charText+"%"))
-                            .orderBy(OrderBy.fromProperty(Vehiculo_Table.patente))
-            ).build();
-            /*for (WorldPopulation wp : arraylist)
-            {
-                if (wp.getCountry().toLowerCase(Locale.getDefault()).contains(charText))
-                {
-                    worldpopulationlist.add(wp);
-                }
-            }*/
-        }
-        notifyDataSetChanged();
     }
 
 }
