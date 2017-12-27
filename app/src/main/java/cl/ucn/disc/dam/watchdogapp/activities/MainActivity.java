@@ -1,5 +1,6 @@
 package cl.ucn.disc.dam.watchdogapp.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -67,11 +68,6 @@ public final class MainActivity extends AppCompatActivity {
             case R.id.button2:
                 //intent = new Intent(getApplicationContext(),MainActivity.class);
                 intent = new Intent(MainActivity.this, RegistroPatenteActivity.class);
-                break;
-
-            case R.id.button3:
-                intent = new Intent(MainActivity.this, RegistroPatenteActivity.class);
-                //intent = new Intent(getApplicationContext(),MainActivity.class);
                 break;
         }
         startActivity(intent);
