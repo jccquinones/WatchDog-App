@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">WatchDogApp</string>
+    <string name="app_name">WatchDog</string>
     <string name="menu_reload">Reload</string>
 </resources>

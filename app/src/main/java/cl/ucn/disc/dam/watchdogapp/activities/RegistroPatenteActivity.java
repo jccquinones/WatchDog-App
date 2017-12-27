@@ -95,23 +95,6 @@ public final class RegistroPatenteActivity extends AppCompatActivity implements 
         v5.save();
         v6.save();
 
-
-        // Mostrar la barrita
-        /*final ActionBar actionBar = super.getActionBar();
-        if (actionBar != null) {
-            //actionBar.setLogo(R.drawable.ic_launcher_foreground);
-            actionBar.setDisplayUseLogoEnabled(true);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeButtonEnabled(true);
-            actionBar.show();
-        }
-
-        // Row division
-        int[] colors = {0, 0xFFFF0000, 0};
-        this.getListView().setDivider(new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, colors));
-        this.getListView().setDividerHeight(5);
-        */
-
         this.vehiculoAdapter = new VehiculoDBFlowAdapter(this);
 
         list.setAdapter(this.vehiculoAdapter);
