@@ -62,21 +62,19 @@ public final class RegistroPatenteActivity extends AppCompatActivity implements 
         setContentView(R.layout.activity_registro_patente);
 
         // TODO : BORRAR TODO LO ETIQUETADO CON EJEMPLO DE LISTVIEW
-        /* ESTE ES UN EJEMPLO DE LISTVIEW */
-        // Generate sample data
         // Se generan la lista para colocar en listview
         final Persona p1 = Persona.builder().nombre("Jose Diaz").rut(185932533).telefono(99289998).numeroAnexo(10).correoElectronico("jdv004@gmail.com").cargo("Ayudante").localizacion("Unidad").tipo("Apoyo").build();
-        final Persona p2 = Persona.builder().nombre("John Quiñonez").rut(18853912).telefono(99321594).numeroAnexo(18).correoElectronico("jqm010@gmail.com").cargo("Profesor").localizacion("Oficina").tipo("Academico").build();
+        final Persona p2 = Persona.builder().nombre("John Quiñones").rut(18853912).telefono(99321594).numeroAnexo(18).correoElectronico("jqm010@gmail.com").cargo("Profesor").localizacion("Oficina").tipo("Academico").build();
         final Vehiculo v1 = Vehiculo.builder().color("rojo").anio(2010).marca("chevrolet").patente("AI-RL-67").descripcion("D1D1D1D1D1D1D1D1D1D1").modelo("Camaro").dueno(p1).build();
         final Vehiculo v2 = Vehiculo.builder().color("azul").anio(2015).marca("suzuki").patente("AL-PK-57").descripcion("D2D2D2D2D2D2D2D2D2D2").modelo("Celerio").dueno(p2).build();
         final Vehiculo v3 = Vehiculo.builder().color("morado").anio(2017).marca("peugeot").patente("AL-RQ-41").descripcion("D3D3D3D3D3D3D3D3D3D3").modelo("3008").dueno(p2).build();
         final Vehiculo v4 = Vehiculo.builder().color("blanca").anio(2008).marca("chevrolet").patente("AN-LN-69").descripcion("D4D4D4D4D4D4D4D4D4D4").modelo("Luv").dueno(p1).build();
         final Vehiculo v5 = Vehiculo.builder().color("gris").anio(1999).marca("volvo").patente("BB-KV-90").descripcion("D5D5D5D5D5D5D5D5D5").modelo("v90").dueno(p1).build();
         final Vehiculo v6 = Vehiculo.builder().color("negro").anio(2000).marca("suzuki").patente("AB-KV-90").descripcion("NUEVO AUTO").modelo("Nomade").dueno(p1).build();
+        final Vehiculo v7 = Vehiculo.builder().color("negro").anio(2000).marca("mitsubitshi").patente("AB-CC-80").descripcion("Auto de carrera").modelo("Eclipse").dueno(p2).build();
         // Locate the ListView in listview_main.xml
         list = (ListView) findViewById(R.id.list_view);
 
-        /* ESTO ES UN EJEMPLO DE LISTVIEW */
         arraylist.add(v1);
         arraylist.add(v2);
         arraylist.add(v3);
@@ -94,6 +92,7 @@ public final class RegistroPatenteActivity extends AppCompatActivity implements 
         v4.save();
         v5.save();
         v6.save();
+        v7.save();
 
         this.vehiculoAdapter = new VehiculoDBFlowAdapter(this);
 
