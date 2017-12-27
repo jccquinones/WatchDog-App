@@ -1,6 +1,7 @@
 package cl.ucn.disc.dam.watchdogapp.activities;
 
 import android.content.Intent;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -68,6 +69,7 @@ public final class MainActivity extends AppCompatActivity implements GetSaveVehi
         final Vehiculo v3 = Vehiculo.builder().color("morado").anio(2017).marca("peugeot").patente("AL-RQ-41").descripcion("D3D3D3D3D3D3D3D3D3D3").modelo("3008").dueno(p2).build();
         final Vehiculo v4 = Vehiculo.builder().color("blanca").anio(2008).marca("chevrolet").patente("AN-LN-69").descripcion("D4D4D4D4D4D4D4D4D4D4").modelo("Luv").dueno(p1).build();
         final Vehiculo v5 = Vehiculo.builder().color("gris").anio(1999).marca("volvo").patente("BB-KV-90").descripcion("D5D5D5D5D5D5D5D5D5").modelo("v90").dueno(p1).build();
+        final Vehiculo v6 = Vehiculo.builder().color("negro").anio(2000).marca("suzuki").patente("AB-KV-90").descripcion("NUEVO AUTO").modelo("Nomade").dueno(p1).build();
         // Locate the ListView in listview_main.xml
         list = (ListView) findViewById(R.id.list_view);
 
@@ -77,6 +79,7 @@ public final class MainActivity extends AppCompatActivity implements GetSaveVehi
         arraylist.add(v3);
         arraylist.add(v4);
         arraylist.add(v5);
+        arraylist.add(v6);
         arrayPersona.add(p1);
         arrayPersona.add(p2);
 
@@ -87,6 +90,7 @@ public final class MainActivity extends AppCompatActivity implements GetSaveVehi
         v3.save();
         v4.save();
         v5.save();
+        v6.save();
 
 
         // Mostrar la barrita
